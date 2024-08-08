@@ -15,7 +15,13 @@ PUT /issues_github
           }
         },
         "Comments": {
-          "type": "text"
+          "type": "text",
+          "fields": {
+            "keyword": {
+              "type": "keyword",
+              "ignore_above": 256
+            }
+          }
         },
         "Created At": {
           "type": "date"
@@ -30,7 +36,13 @@ PUT /issues_github
           }
         },
         "Description": {
-          "type": "text"
+          "type": "text",
+          "fields": {
+            "keyword": {
+              "type": "keyword",
+              "ignore_above": 256
+            }
+          }
         },
         "ID": {
           "type": "text",
