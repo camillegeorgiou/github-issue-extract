@@ -32,6 +32,12 @@ query {
             ... on Issue {
               url
               title
+              body
+              comments(first: 100) {
+                nodes {
+                  body
+                }
+              }
               assignees(first: 10) {
                 nodes {
                   login
@@ -41,6 +47,12 @@ query {
             ... on PullRequest {
               url
               title
+              body
+              comments(first: 100) {
+                nodes {
+                  body
+                }
+              }
               assignees(first: 10) {
                 nodes {
                   login
@@ -146,6 +158,8 @@ for item in items:
         continue
     url = content['url']
     title = content.get('title', '')
+    description = content.get('body', '')
+    comments = '\n'.join([comment['body'] for comment in content.get('comments', {}).get('nodes', [])])
     assignees = ', '.join([assignee['login'] for assignee in content.get('assignees', {}).get('nodes', [])])
     
     # Initialize field values
@@ -181,6 +195,8 @@ for item in items:
     if existing_doc['found']:
         existing_doc = existing_doc['_source']
         if (existing_doc.get('Title') == title and
+            existing_doc.get('Description') == description and
+            existing_doc.get('Comments') == comments and
             existing_doc.get('Assignees') == assignees and
             existing_doc.get('Priority') == priority and
             existing_doc.get('Status') == status and
@@ -203,6 +219,8 @@ for item in items:
         "doc": {
             "ID": item['id'],
             "Title": title,
+            "Description": description,
+            "Comments": comments,
             "Assignees": assignees,
             "Priority": priority,
             "Status": status,
