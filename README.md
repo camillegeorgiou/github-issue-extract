@@ -14,7 +14,7 @@ Read through the script and populate the parameters as required.
 
 1. Populate variables in the script - read through comments in detail before proceeding
 2. pip install -r requirements.txt
-3. Create the index in the target cluster (issues_view.txt)
+3. Create the index in the target cluster (issues_github.txt)
 4. Run python git_project_board_extract.py 
 5. Import the dashboard.ndjson and/or canvas.ndjson via Saved Objects
 6. Establish a cron job to run on a schedule i.e to run every day at 12:00 AM:
