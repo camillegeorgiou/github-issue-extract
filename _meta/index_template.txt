@@ -1,0 +1,15 @@
+PUT _index_template/issues_github
+{
+  "template": {
+    "settings": {
+      "final_pipeline": "issues_github"
+    }
+  },
+  "index_patterns": [
+    "issues_github*"
+  ],
+  "composed_of": [
+    "issues_github"
+  ],
+  "allow_auto_create": true
+}

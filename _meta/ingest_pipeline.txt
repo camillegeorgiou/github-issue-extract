@@ -1,0 +1,14 @@
+PUT _ingest/pipeline/issues_github
+{
+  "processors": [
+    {
+      "split": {
+        "field": "Labels",
+        "separator": ",",
+        "target_field": "Labels",
+        "preserve_trailing": true,
+        "ignore_missing": true
+      }
+    }
+  ]
+}
